@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 한줄복사:art + shift + 방향키 아래쪽 */
+        *{margin: 0; padding: 0;}
+        .부모 {
+            background-color: blue;
+            /* border:두께 스타일 컬러; 선, 라인 */
+            border: 5px solid red;
+            width: 1000px;
+            margin: auto;
+            /* margin은
+            margin-right
+            margin-left
+            margin-top
+            margin-bottom 를 모두 포함한다 */
+        }
+        .일동{background-color:blueviolet; width: 300px;
+            float: right;}
+        .이동{background-color: darkgreen; width: 300px;
+            float: right;}
+        .삼동{background-color:darkseagreen; width: 300px;
+            float: right;}
+
+        /* 자식은 부모의 넓이를 따라간다 
+        부모는 자식의 높이를 따라간다*/
+        .효자{clear: both;}
+
+        /* 정렬하기
+        float: none; float:left; float:right; */
+
+        .동생{
+            width: 1000px;
+            border: 5px solid blue;
+            background-color: pink;
+            margin-top: 50px;
+            margin-left: auto;
+            margin-right: auto; 
+        }
+
+        .동생{}
+        /* 띄어쓰기 : 자손중에 찾음 
+             > :  .동생>.일철{} : 자식중에 찾음(손자, 증손자 (x))
+             .놀부.형: 클래스를 붙여적을 때, 클래스명이 놀부이고 형인 것
+        */
+        .동생 .일철{}
+        .동생>.동생자식{width: 300px; 
+            height: 300px; 
+            float: left; background-color: aqua;}
+        .동생>.일철{margin-right: 20px;}
+        .동생>.이철{margin-right: 20px;
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv5Kwvhr3WlQjp0gGt7WjtNRqBCfXKSu_A1Q&usqp=CAU);
+            background-size: cover;}
+        .동생>.삼철 img{width: 100%; height: 100%;}
+
+        .영역{background-color: #FBFADA;}
+        .영역 .세아들{background-color: #436850;}
+        .영역 .세아들 em{background-color: #FFFC9B;
+        width: 200px;
+        }
+
+        /* 
+        tag(태그, 요소(element))의 종류
+        1)block --> 공간을 인식, 태어날 때 부모의 넓이를 모두 가짐
+        2)inline --> block 요소 안에 적용하는 태그, 공간에 대한 인식 없음
+        3)inline-block --> inline 요소이나 공간에 대해 인식함
+        */
+
+        .영역 .세아들 strong{background-color: #FC6736;
+        width: 100px; display: inline-block;
+        }
+        .막내{background-color: #FFD0EC; width: 1000px; 
+         /* 
+            margin:상하좌우;
+            margin:위하  좌우;
+            margin:위 좌우 아래;
+            margin:상 우 하 좌;(시계방향)
+         */
+         margin: 100px auto 0;
+        }
+
+        .막내 .child.child1{}
+        .막내 .child1{float: left; width: 25%; background-color: #503C3C;}
+        .막내 .child2{float: left; width: 25%; background-color: #503C3C;}
+        .막내 .child3{float: left; width: 25%; background-color: #503C3C;}
+        .막내 .child4{float: left; width: 25%; background-color: #503C3C;}
+        .막내 .약{clear: both;}
+
+        /* ::before,::after는 CSS로 만드는 가상공간, 화면에는 나타남, 인라인요소임 */
+
+        /* .D::before{content: "A";} 
+            clear:both;는 block 요소여야 적용됨
+        */
+        .약::after{content: ""; clear: both; display: block;}
+
+    </style>
+</head>
+
+<body>
+    <!-- 한줄지우기 ctrl+x --> 
+    <div class="A 부모">
+        <div class="B 일동">일동</div>
+        <div class="C 이동">이동</div>
+        <div class="D 삼동">삼동</div>
+        <div class="E 효자"></div>
+    </div>
+    <div class="B 동생 약">
+        <div class="동생자식 일철">일철</div>
+        <div class="동생자식 이철">이철</div>
+        <div class="동생자식 삼철">
+            <img src="data:image/jpeg;base64,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" alt="이미지오류">
+        </div>
+        <!-- <div class="효자"></div> -->
+    </div>
+    <div class="C 영역">
+        <div class="세아들">
+            세 <em>좋은</em> 아들 
+            <strong>있어요</strong>
+        </div>
+    </div>
+    <div class="막내 약">
+        <div class="child child1">child1</div>
+        <div class="child child2">child2</div>
+        <div class="child child3">child3</div>
+        <div class="child child4">child4</div>
+    </div>
+</body>
+
+</html>

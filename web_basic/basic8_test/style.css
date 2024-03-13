@@ -1,0 +1,21 @@
+*{margin: 0; padding: 0;}
+.전체영역{
+    margin: auto;
+    width: 1000px;
+    height: 200px;
+    padding: 20px;
+    background-color: dimgray;
+}
+.전체영역 .일동{
+}
+.전체영역 .일동자식{
+    width: 30%;
+    height: 200px;
+    margin-right: 5%;
+    background-color: green;
+    float: left;
+}
+.전체영역 .일삼{
+    margin-right: 0;
+}
+.약::after{content:""; clear: both; display: block; }

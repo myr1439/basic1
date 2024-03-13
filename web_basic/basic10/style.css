@@ -1,0 +1,36 @@
+*{margin: 0; padding: 0;}
+
+.clearfix::after{content: ""; clear: both; display: block;}
+
+.header{
+    margin: 0 auto;
+    width: 1200px;
+    background-color: #F3EEEA;
+}
+
+.header .it{
+    width: 1200px;
+    height: 90px;
+    background-color: #776B5D;
+}
+
+.header .it1{
+    height: 900px;
+}
+
+.header .one{
+    padding: 1%;
+    margin-top: 64px;
+}
+.header .one .li{
+    width: 20%;
+    height: 400px;
+    float: left;
+    margin-right: 5%;
+    background-color: bisque;
+    
+}
+
+.header .one .two{margin-left: 2.5%;}
+
+.header .one .five{margin-right: 0;}
