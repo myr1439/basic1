@@ -65,6 +65,7 @@ ex)인터넷 주소
     top: 94px; left: 0;
     background-color: #fff;
     border: 1px solid #666;
+    z-index: 100; /* position이 있어야 z-index가 적용된다 */
 }
 .header .gnb .submenu li{
     height: 40px;
@@ -79,15 +80,33 @@ ex)인터넷 주소
     background-color: #ededed; color: #222;
 }
 
+/* end header */
+
+/* 부모가 float에 의해 영역이 깨지지 않는 경우가
+1 - 자식이 float일 때 그 부모도 float이 있다면 그 부모는 깨지지 않음
+2 - 자식이 float일 때 그 부모가 position absolute, fixed라면 부모는 깨지지 않음
+ */
 
 .main{
-    height: 300px; background-color: brown;
+
 }
+.main .container{
+    position: relative;
+    height: 300px; overflow: hidden;
+}
+.main ul{
+    position: absolute; width: 3600px;
+    left: 0; top: 0;
+}
+.main ul li{float: left;}
+.main ul li a{}
+.main ul li a img{}
+
+/* end main */
 
 /* inline요소 --> 공간에 대한 개념이 없음
 -->inline요소인데 공간 인식함 ==>button, img */
 
-/* end header */
 
 /* tab */
 
@@ -152,12 +171,66 @@ margin-right: 30px; text-align: center;
     box-sizing: border-box;
 }
 .contents>div.notice>ul{}
-.contents>div.notice>ul>li{line-height: 30px; 
-    overflow: hidden; /* float으로 인한 깨짐 방지 height: 30px;으로 처리해도 됨 */ }
+.contents>div.notice>ul>li{
+    position: relative;
+    line-height: 30px; 
+    overflow: hidden; /* float으로 인한 깨짐 방지 height: 30px;으로 처리해도 됨 */ 
+    padding-left: 7px;
+}
 .contents>div.notice>ul>li>a{float: left; display: block;}
+.contents>div.notice>ul>li::before{
+    content: ""; width: 3px; height: 3px;
+    background-color: #333;
+    position: absolute;
+    top: 14px; left: 0;
+}
 .contents>div.notice>ul>li .date{float: right; display: block;}
 
-.contents>div.banner{}
-.contents>div.now{}
+.contents>div.banner{padding: 5px 20px 0;}
+.contents>div.now{padding: 5px 20px 0;}
 
 /* end contents */
+
+/* footer */
+.footer{background-color: #333; color: #fff;}
+.footer a{color: #fff;}
+.footer h2{
+    width: 400px; float: left; height: 100px;
+    padding-top: 30px; box-sizing: border-box;
+}
+.footer p{
+    float: left; text-align: center; width: 400px;
+    height: 100px; line-height: 100px;}
+.footer .snsnav{float: right; height: 100px;}
+.footer .snsnav ul{}
+.footer .snsnav>ul li{float: left; margin: 0 10px;}
+.footer .snsnav>ul li a{line-height: 100px;}
+
+/* end footer */
+
+/* popup */
+.popup{
+    display: none;
+    position: fixed;
+    /* left: 0; right: 0; */
+    left: 0; width: 100%;
+    top: 0; height: 100%;
+    /* margin: 0 auto; */
+    z-index: 200;
+    background-color: rgba(0,0,0,0.4);
+}
+.popup>div{
+    width: 300px; height: 300px;
+    margin: 0 auto;
+    top: 200px;
+    position: relative;
+    background-color: #fff;
+    padding: 20px;
+}
+.popup h2{font-size: 18px; margin-bottom: 15px;}
+.popup h2 p{font-size: 16px; color: #666;}
+
+.popup .close{
+    position: absolute;
+    right: 20px; bottom: 20px;
+}
